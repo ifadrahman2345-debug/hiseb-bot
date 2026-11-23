@@ -240,8 +240,17 @@ def start_health_server():
 if __name__ == "__main__":
     init_db()
     threading.Thread(target=start_health_server, daemon=True).start()
-    app = ApplicationBuilder().token(TOKEN).build()
+    app = (
+        ApplicationBuilder()
+        .token(TOKEN)
+        .connect_timeout(30.0)
+        .read_timeout(30.0)
+        .write_timeout(30.0)
+        .pool_timeout(30.0)
+        .build()
+    )
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     print(f"{BOT_NAME} is running...")
-    app.run_polling()
+    app.run_polling(timeout=30, drop_pending_updates=True)
+    
