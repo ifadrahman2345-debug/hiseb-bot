@@ -10,7 +10,7 @@ from telegram.ext import (
     filters,
 )
 
-TOKEN = os.getenv("9136596869:AAEJR7FMmtV2nxif3uGBE6pu2WEvuODAY6k")
+TOKEN = "9136596869:AAEJR7FMmtV2nxif3uGBE6pu2WEvuODAY6k"
 BOT_NAME = "HISEB"
 DB_PATH = "hiseb.db"
 
